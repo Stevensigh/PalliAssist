@@ -8,6 +8,13 @@ import { ListPage } from '../pages/list/list';
 import{LoginPage} from '../pages/login/login';
 import { AuthService } from './../providers/auth-service';
 
+//Different main Pages
+import { MessengerPage } from '../pages/messenger/messenger';
+import { PainlocatorPage } from '../pages/painlocator/painlocator';
+import { MedicationPage } from '../pages/medication/medication';
+import { SettingsPage } from '../pages/settings/settings';
+import { EsassurveyPage } from '../pages/esassurvey/esassurvey';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -16,16 +23,21 @@ export class MyApp {
 
   rootPage: any = LoginPage;
 
- // pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    // this.pages = [
-    //   { title: 'Home', component: HomePage },
-    //   { title: 'List', component: ListPage }
-    // ];
+    this.pages = [
+      { title: 'Home', component: HomePage },
+      { title: 'Messenger', component: MessengerPage},
+      { title: 'Medication', component: MedicationPage},
+      { title: 'ESAS Survey', component: EsassurveyPage},
+      { title: 'Pain Locator', component: PainlocatorPage},
+      { title: 'Settings ', component: SettingsPage}
+
+    ];
+
 
   }
 

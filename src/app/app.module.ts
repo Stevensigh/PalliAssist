@@ -8,6 +8,13 @@ import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 
+//Different main Pages
+import { MessengerPage } from '../pages/messenger/messenger';
+import { PainlocatorPage } from '../pages/painlocator/painlocator';
+import { MedicationPage } from '../pages/medication/medication';
+import { SettingsPage } from '../pages/settings/settings';
+import { EsassurveyPage } from '../pages/esassurvey/esassurvey';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -19,7 +26,12 @@ import { AuthService } from './../providers/auth-service';
     HomePage,
     ListPage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    MessengerPage,
+    PainlocatorPage,
+    MedicationPage,
+    SettingsPage,
+    EsassurveyPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +43,12 @@ import { AuthService } from './../providers/auth-service';
     HomePage,
     ListPage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    MessengerPage,
+    PainlocatorPage,
+    MedicationPage,
+    SettingsPage,
+    EsassurveyPage
   ],
   providers: [
     StatusBar,
