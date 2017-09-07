@@ -48,11 +48,11 @@ export class LoginPage {
   showError(text) {
     this.loading.dismiss();
  
-    // let alert = this.alertCtrl.create({
-    //   title: 'Fail',
-    //   subTitle: text,
-    //   buttons: ['OK']
-    // });
-    // alert.present(prompt);
+    let alert = this.alertCtrl.create({
+      title: 'Fail',
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present(prompt);
   }
 }

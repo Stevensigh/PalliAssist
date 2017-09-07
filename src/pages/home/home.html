@@ -42,4 +42,13 @@
       </button>
     </ion-list>
    </ion-card>
+
+   <ion-card *ngFor="let video of videos">
+      <ion-card-header>
+        {{video.title}}
+      </ion-card-header>
+      <ion-card-content>
+        <iframe width="100%" height="20%" [src]=video.vid|youtube frameborder="0" allowfullscreen></iframe>
+      </ion-card-content>
+   </ion-card>
 </ion-content>

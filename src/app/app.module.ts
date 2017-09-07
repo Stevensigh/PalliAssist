@@ -19,6 +19,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AuthService } from './../providers/auth-service';
+//Youtube
+import {YoutubePipe } from '../pipes/youtube/youtube';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { AuthService } from './../providers/auth-service';
     PainlocatorPage,
     MedicationPage,
     SettingsPage,
-    EsassurveyPage
+    EsassurveyPage,
+    YoutubePipe
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,7 @@ import { AuthService } from './../providers/auth-service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthService
+    AuthService,
   ]
 })
 export class AppModule {}
