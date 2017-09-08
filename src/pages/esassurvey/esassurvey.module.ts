@@ -9,5 +9,8 @@ import { EsassurveyPage } from './esassurvey';
   imports: [
     IonicPageModule.forChild(EsassurveyPage),
   ],
+  entryComponents: [
+    EsassurveyPage,
+  ]
 })
 export class EsassurveyPageModule {}

@@ -14,9 +14,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'esassurvey.html',
 })
 export class EsassurveyPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  pain: number=0;
+  tired: number=0;
+  drowsy: number=0;
+  nausea: number=0;
+  appetite: number=0;
+  breathing: number=0;
+  depression: number=0;
+  anxiety: number=0;
+  wellbeing: number=0;
+  // constructor(public navCtrl: NavController, public navParams: NavParams) {
+  // }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EsassurveyPage');

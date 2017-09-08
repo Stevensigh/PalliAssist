@@ -8,19 +8,126 @@
 
   <ion-navbar>
 
-      <button ion-button menuToggle>
+    <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
       </button>
     <ion-title>ESAS Survey</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
-  <ion-item>
+  <ion-list>
+    <ion-list-header color="gray">
+      Pain
+      <ion-badge item-end>{{pain}}</ion-badge>
+    </ion-list-header>
+    <ion-item>
+      <ion-range min="0" max="10" step="1" pin="true" [(ngModel)]="pain" color="primary">
+        <ion-label range-left>0 </ion-label>
+        <ion-label range-right>10</ion-label>
+      </ion-range>
+    </ion-item>
 
-  </ion-item>
+    <ion-list-header color="gray">
+      Tiredness
+      <ion-badge item-end>{{tired}}</ion-badge>
+    </ion-list-header>
+    <ion-item>
+      <ion-range min="0" max="10" step="1" pin="true" [(ngModel)]="tired" color="primary">
+        <ion-label range-left>0 </ion-label>
+        <ion-label range-right>10</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-list-header color="gray">
+      Drowsiness
+      <ion-badge item-end>{{drowsy}}</ion-badge>
+    </ion-list-header>
+    <ion-item>
+      <ion-range min="0" max="10" step="1" pin="true" [(ngModel)]="drowsy" color="primary">
+        <ion-label range-left>0 </ion-label>
+        <ion-label range-right>10</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-list-header color="gray">
+      Nausea
+      <ion-badge item-end>{{nausea}}</ion-badge>
+    </ion-list-header>
+    <ion-item>
+      <ion-range min="0" max="10" step="1" pin="true" [(ngModel)]="nausea" color="primary">
+        <ion-label range-left>0 </ion-label>
+        <ion-label range-right>10</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-list-header color="gray">
+      Appetite
+      <ion-badge item-end>{{appetite}}</ion-badge>
+    </ion-list-header>
+    <ion-item>
+      <ion-range min="0" max="10" step="1" pin="true" [(ngModel)]="appetite" color="primary">
+        <ion-label range-left>0 </ion-label>
+        <ion-label range-right>10</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-list-header color="gray">
+      Breathing
+      <ion-badge item-end>{{breathing}}</ion-badge>
+    </ion-list-header>
+    <ion-item>
+      <ion-range min="0" max="10" step="1" pin="true" [(ngModel)]="breathing" color="primary">
+        <ion-label range-left>0 </ion-label>
+        <ion-label range-right>10</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-list-header color="gray">
+        Depression
+        <ion-badge item-end>{{depression}}</ion-badge>
+      </ion-list-header>
+      <ion-item>
+        <ion-range min="0" max="10" step="1" pin="true" [(ngModel)]="depression" color="primary">
+          <ion-label range-left>0 </ion-label>
+          <ion-label range-right>10</ion-label>
+        </ion-range>
+      </ion-item>
+
+      <ion-list-header color="gray">
+          Anxiety
+          <ion-badge item-end>{{anxiety}}</ion-badge>
+        </ion-list-header>
+        <ion-item>
+          <ion-range min="0" max="10" step="1" pin="true" [(ngModel)]="anxiety" color="primary">
+            <ion-label range-left>0 </ion-label>
+            <ion-label range-right>10</ion-label>
+          </ion-range>
+        </ion-item>
+
+        <ion-list-header color="gray">
+            Wellbeing
+            <ion-badge item-end>{{wellbeing}}</ion-badge>
+          </ion-list-header>
+          <ion-item>
+            <ion-range min="0" max="10" step="1" pin="true" [(ngModel)]="wellbeing" color="primary">
+              <ion-label range-left>0 </ion-label>
+              <ion-label range-right>10</ion-label>
+            </ion-range>
+          </ion-item>
+
+
+  </ion-list>
+
+
+
 
 </ion-content>
+
+<style>
+  ion-list+ion-list {
+    margin-top: 0;
+  }
+</style>
