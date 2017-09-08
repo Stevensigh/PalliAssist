@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 
 /**
  * Generated class for the PainlocatorPage page.
@@ -8,14 +8,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * on Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-painlocator',
   templateUrl: 'painlocator.html',
 })
 export class PainlocatorPage {
+  personView: string = "frontView";
+  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor() {
+   
   }
 
   ionViewDidLoad() {

@@ -7,12 +7,59 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>painlocator</ion-title>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>Pain Locator</ion-title>
   </ion-navbar>
+  
+
+
+<ion-toolbar no-border-top>
+  <ion-segment [(ngModel)]="personView">
+    <ion-segment-button value="frontView">
+      Front
+    </ion-segment-button>
+    <ion-segment-button value="sideView">
+      Side
+    </ion-segment-button>
+    <ion-segment-button value="rearView">
+      Rear
+    </ion-segment-button>
+  </ion-segment>
+
+
+</ion-toolbar>
+
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
+  <div [ngSwitch]="personView">
+    <ion-list *ngSwitchCase="'frontView'">
+      <ion-item item-start>
+     
+          <img src="img/painFront.png" height=420/>
+  
+
+    </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'sideView'">
+      <ion-item item-start>
+        <img src="img/painSide.png" height=420/>
+    
+    </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'rearView'">
+      <ion-item item-start>
+     
+        <img src="img/painRear.png" height=520/>
+ 
+    </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
