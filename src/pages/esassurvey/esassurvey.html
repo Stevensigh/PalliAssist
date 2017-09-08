@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="periwinkle">
 
     <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
@@ -121,9 +121,32 @@
 
   </ion-list>
 
+  <ion-item color="periwinkle">
+    Other Questions:
+  </ion-item>
 
+  <ion-list>
+    <ion-item>
+      <ion-checkbox [(ngModel)]="data.fever"></ion-checkbox>
+      <ion-label>Do you have a fever?</ion-label>
+    </ion-item>
 
+    <ion-item>
+      <ion-checkbox [(ngModel)]="data.confused"></ion-checkbox>
+      <ion-label>Do you feel confused?</ion-label>
+    </ion-item>
 
+    <ion-item>
+      <ion-checkbox [(ngModel)]="data.vomiting"></ion-checkbox>
+      <ion-label>Have you been vomiting?</ion-label>
+    </ion-item>
+    
+    <ion-item>
+      <ion-checkbox [(ngModel)]="data.constipated"></ion-checkbox>
+      <ion-label>Were you constipated?</ion-label>
+    </ion-item>
+  </ion-list>
+    
 </ion-content>
 
 <style>

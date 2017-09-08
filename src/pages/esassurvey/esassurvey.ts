@@ -12,8 +12,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @Component({
   selector: 'page-esassurvey',
   templateUrl: 'esassurvey.html',
+
+
 })
 export class EsassurveyPage {
+  data = {
+    fever: false,
+    confused: false, 
+    vomiting: false,
+    constipated: false
+  };
   pain: number=0;
   tired: number=0;
   drowsy: number=0;
