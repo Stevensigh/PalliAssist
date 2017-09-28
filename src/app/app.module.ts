@@ -22,6 +22,15 @@ import { AuthService } from './../providers/auth-service';
 //Youtube
 import {YoutubePipe } from '../pipes/youtube/youtube';
 
+//firebase
+import { firebaseConfig } from './app.constants';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+//keyboard
+import { Keyboard } from '@ionic-native/keyboard';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -39,6 +48,9 @@ import {YoutubePipe } from '../pipes/youtube/youtube';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
