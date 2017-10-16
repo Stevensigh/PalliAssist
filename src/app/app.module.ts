@@ -19,6 +19,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AuthService } from './../providers/auth-service';
+import { ChatsProvider } from '../providers/chats/chats';
 //Youtube
 import {YoutubePipe } from '../pipes/youtube/youtube';
 
@@ -70,6 +71,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
+    Keyboard,
+    ChatsProvider
   ]
 })
 export class AppModule {}
