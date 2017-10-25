@@ -1,49 +1,76 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
-import { AuthService } from '../../providers/auth-service';
+import {
+  IonicPage, 
+  Loading,
+  LoadingController, 
+  NavController,
+  AlertController } from 'ionic-angular';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { AuthProvider } from '../../providers/auth/auth';
 import {HomePage} from '../../pages/home/home';
 import {SignupPage} from '../../pages/signup/signup';
+import { EmailValidator } from '../../validators/email';
 
-import * as data from './properties.json';
-
-
- 
-@IonicPage()
+@IonicPage({
+  name: 'login'
+})
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  loading: Loading;
+  public loading: Loading;
+  public loginForm: FormGroup;
   registerCredentials = { username: '', password: '' };
-  auth_script = 'https://palliassist-dev-us.azurewebsites.net/token?identity=';
-  user = '';
-  pass = '';
-  twilio_SID = '';
-  twilio_AUTH_TOKEN = '';
-  twilio_API_SECRET = '';
-  twilio_UNIQUE_ID = '';
- 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) { }
- 
-  public createAccount() {
-    this.nav.push(SignupPage);
+  constructor(  public navCtrl: NavController,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController, 
+    public authProvider: AuthProvider, 
+    public formBuilder: FormBuilder) { 
+      this.loginForm = formBuilder.group({
+        email: ['', 
+        Validators.compose([Validators.required, EmailValidator.isValid])],
+        password: ['', 
+        Validators.compose([Validators.minLength(6), Validators.required])]
+      });
+    }
+
+
+  goToSignup(): void { 
+    this.navCtrl.push('SignupPage'); 
+  }
+  
+  goToResetPassword(): void { 
+    this.navCtrl.push('ResetPasswordPage'); 
   }
  
-  public login() {
-    this.showLoading()
-    this.auth.login(this.registerCredentials).subscribe(allowed => {   
-      if(allowed) {
-        this.nav.setRoot(HomePage);
-        this.setTwilioCredentials();
-    }
-      else {
-        this.showError("Access Denied");
-      }
-    },
-      error => {
-        this.showError(error);
+  loginUser(): void {
+    if (!this.loginForm.valid){
+      console.log(this.loginForm.value);
+    } else {
+      this.authProvider.loginUser(this.loginForm.value.email, 
+        this.loginForm.value.password)
+      .then( authData => {
+        this.loading.dismiss().then( () => {
+          this.navCtrl.setRoot(HomePage);
+        });
+      }, error => {
+        this.loading.dismiss().then( () => {
+          let alert = this.alertCtrl.create({
+            message: error.message,
+            buttons: [
+              {
+                text: "Ok",
+                role: 'cancel'
+              }
+            ]
+          });
+          alert.present();
+        });
       });
+      this.loading = this.loadingCtrl.create();
+      this.loading.present();
+    }
   }
 
 
@@ -64,18 +91,8 @@ export class LoginPage {
       subTitle: text,
       buttons: ['OK']
     });
-    alert.present(prompt);
+    // alert.present(prompt);
   }
 
   
-  setTwilioCredentials() {
-    this.twilio_SID = (<any>data).TWILIO_ACCOUNT_SID;
-    this.twilio_AUTH_TOKEN = (<any>data).TWILIO_AUTH_TOKEN;
-    this.twilio_API_SECRET = (<any>data).TWILIO_API_SECRET;
-    this.twilio_UNIQUE_ID = this.auth.currentUser.username;
-    console.log(this.twilio_SID);
-    console.log(this.twilio_AUTH_TOKEN);
-    console.log(this.twilio_API_SECRET);
-    console.log(this.twilio_UNIQUE_ID);
-}
 }

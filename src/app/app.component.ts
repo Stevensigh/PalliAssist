@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import{LoginPage} from '../pages/login/login';
-import { AuthService } from './../providers/auth-service';
+import { AuthProvider} from './../providers/auth/auth';
 
 //Different main Pages
 import { MessengerPage } from '../pages/messenger/messenger';
@@ -14,6 +14,7 @@ import { PainlocatorPage } from '../pages/painlocator/painlocator';
 import { MedicationPage } from '../pages/medication/medication';
 import { SettingsPage } from '../pages/settings/settings';
 import { EsassurveyPage } from '../pages/esassurvey/esassurvey';
+import firebase from 'firebase';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,12 +22,26 @@ import { EsassurveyPage } from '../pages/esassurvey/esassurvey';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any;
 
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
+
+    firebase.initializeApp({
+
+    });
+
+    const unsubscribe = firebase.auth().onAuthStateChanged( user => {
+      if (!user) {
+        this.rootPage = LoginPage;
+        unsubscribe();
+      } else { 
+        this.rootPage = HomePage;
+        unsubscribe();
+      }
+    });
 
     this.pages = [
       { title: 'Home', component: HomePage },

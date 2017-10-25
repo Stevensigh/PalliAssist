@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -18,16 +19,14 @@ import { EsassurveyPage } from '../pages/esassurvey/esassurvey';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { AuthService } from './../providers/auth-service';
+import { AuthProvider } from './../providers/auth/auth';
 import { ChatsProvider } from '../providers/chats/chats';
 //Youtube
 import {YoutubePipe } from '../pipes/youtube/youtube';
 
 //firebase
 import { firebaseConfig } from './app.constants';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 //keyboard
 import { Keyboard } from '@ionic-native/keyboard';
 
@@ -48,10 +47,8 @@ import { Keyboard } from '@ionic-native/keyboard';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule,
-    AngularFireDatabaseModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -70,9 +67,9 @@ import { Keyboard } from '@ionic-native/keyboard';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthService,
     Keyboard,
-    ChatsProvider
+    ChatsProvider,
+    AuthProvider
   ]
 })
 export class AppModule {}

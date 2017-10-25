@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, Platform} from 'ionic-angular';
-import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
-import {AuthService, UserModel} from '../../providers/auth-service';
+import {AuthProvider, UserModel} from '../../providers/auth/auth';
 import {ChatsProvider} from '../../providers/chats/chats';
 import { Keyboard } from '@ionic-native/keyboard';
 
@@ -31,14 +30,14 @@ export class MessengerPage {
     public platform: Platform,
     public keyboard: Keyboard,
     public chatProvider: ChatsProvider,
-    public authProvider: AuthService
+    public authProvider: AuthProvider
     ) {
       this.user = navParams.get('user');
   }
 
   ionViewDidLoad() {   
-    this.chatProvider.getMessages()
-    .subscribe((messages => this.chatMessages = messages));
+    // this.chatProvider.getMessages()
+    // .subscribe((messages => this.chatMessages = messages));
 
   if (this.platform.is('cordova')) {
     this.keyboard.onKeyboardShow()
@@ -55,16 +54,16 @@ export class MessengerPage {
 
 
   sendMessage(event: any) {
-    if (!this.chatText)
-      return;
+    // if (!this.chatText)
+    //   return;
 
-    this.chatProvider.sendMessage((this.user as any).$key, this.chatText)
-      .then(() => {
-          this.chatText = '';
-          this.scrollDown();
-      }, (error) => {
-          console.log(error);
-      });
+    // this.chatProvider.sendMessage((this.user as any).$key, this.chatText)
+    //   .then(() => {
+    //       this.chatText = '';
+    //       this.scrollDown();
+    //   }, (error) => {
+    //       console.log(error);
+    //   });
     }
 
   private scrollDown() {

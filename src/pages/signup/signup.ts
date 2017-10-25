@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, IonicPage } from 'ionic-angular';
-import { AuthService } from '../../providers/auth-service';
+import { AuthProvider} from '../../providers/auth/auth';
  
 @IonicPage()
 @Component({
@@ -11,20 +11,20 @@ export class SignupPage {
   createSuccess = false;
   registerCredentials = { name: '', accessKey: '', username: '', password: '', password2: '', caregiver: '', hospital: '', doctor: '', phone: ''};
  
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) { }
+  constructor(private nav: NavController, private alertCtrl: AlertController) { }
  
   public register() {
-    this.auth.register(this.registerCredentials).subscribe(success => {
-      if (success) {
-        this.createSuccess = true;
-        this.showPopup("Success", "Account created.");
-      } else {
-        this.showPopup("Error", "Problem creating account.");
-      }
-    },
-      error => {
-        this.showPopup("Error", error);
-      });
+    // this.auth.register(this.registerCredentials).subscribe(success => {
+    //   if (success) {
+    //     this.createSuccess = true;
+    //     this.showPopup("Success", "Account created.");
+    //   } else {
+    //     this.showPopup("Error", "Problem creating account.");
+    //   }
+    // },
+    //   error => {
+    //     this.showPopup("Error", error);
+    //   });
   }
  
   showPopup(title, text) {
