@@ -8,6 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
+import {ResetPasswordPage} from '../pages/reset-password/reset-password';
 
 //Different main Pages
 import { MessengerPage } from '../pages/messenger/messenger';
@@ -15,6 +16,7 @@ import { PainlocatorPage } from '../pages/painlocator/painlocator';
 import { MedicationPage } from '../pages/medication/medication';
 import { SettingsPage } from '../pages/settings/settings';
 import { EsassurveyPage } from '../pages/esassurvey/esassurvey';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -43,6 +45,7 @@ import { Keyboard } from '@ionic-native/keyboard';
     MedicationPage,
     SettingsPage,
     EsassurveyPage,
+    ResetPasswordPage,
     YoutubePipe
   ],
   imports: [
@@ -57,6 +60,7 @@ import { Keyboard } from '@ionic-native/keyboard';
     ListPage,
     LoginPage,
     SignupPage,
+    ResetPasswordPage,
     MessengerPage,
     PainlocatorPage,
     MedicationPage,

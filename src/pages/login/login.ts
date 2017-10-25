@@ -10,7 +10,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import {HomePage} from '../../pages/home/home';
 import {SignupPage} from '../../pages/signup/signup';
 import { EmailValidator } from '../../validators/email';
-
+import {ResetPasswordPage} from '../../pages/reset-password/reset-password';
 @IonicPage({
   name: 'login'
 })
@@ -37,11 +37,11 @@ export class LoginPage {
 
 
   goToSignup(): void { 
-    this.navCtrl.push('SignupPage'); 
+    this.navCtrl.push(SignupPage); 
   }
   
   goToResetPassword(): void { 
-    this.navCtrl.push('ResetPasswordPage'); 
+    this.navCtrl.push(ResetPasswordPage); 
   }
  
   loginUser(): void {
