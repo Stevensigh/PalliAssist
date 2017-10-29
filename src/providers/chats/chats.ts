@@ -1,48 +1,49 @@
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 
-import { AuthProvider} from '../auth/auth';
+import { AuthProvider } from '../auth/auth';
 
 import { tableNames } from '../../app/app.constants';
 
 @Injectable()
 export class ChatsProvider {
 
-  constructor(public authProvider: AuthProvider) {
+  constructor(public authProvider: AuthProvider, public db: AngularFireDatabase) {
   }
 
   getMessages(channelId: string = 'general') {
 
-    // return this.db.list(`${tableNames.ChatMessage}/${channelId}`)
-    //   .map(messages => messages.map((item) => {
-    //     item.day = new Date(item.timestamp || Date.now()).getDate();
+    return this.db.list(`${tableNames.ChatMessage}/${channelId}`)
+      .map(messages => messages.map((item) => {
+        item.day = new Date(item.timestamp || Date.now()).getDate();
 
-    //     if (item.from)
-    //       item.user = this.authProvider.getUserInfo();
+        if (item.from)
+          item.user = this.authProvider.getFullProfile(item.from);
 
-    //       return item;
-    //   }));
+          return item;
+      }));
   }
 
   getLastMessages(channelId: string = 'general', count: number = 5) {
-    // return this.db.list(`${tableNames.ChatMessage}/${channelId}`, {query: {
-    //   limitToLast: 5,
-    //   orderByPriority: true
-    // }}).map(messages => messages.reverse().map((item) => {
-    //     if (item.from)
-    //       item.user = this.authProvider.getUserInfo();
+    return this.db.list(`${tableNames.ChatMessage}/${channelId}`, {query: {
+      limitToLast: 5,
+      orderByPriority: true
+    }}).map(messages => messages.reverse().map((item) => {
+        if (item.from)
+          item.user = this.authProvider.getFullProfile(item.from);
 
-    //       return item;
-    //   }));
+          return item;
+      }));
   }
 
   sendMessage(userId: string, message: string, channelId: string = 'general') {
-  //   return this.db.list(`${tableNames.ChatMessage}/${channelId}`)
-  //     .push({
-  //       from: userId,
-  //       message: message,
-  //       timestamp: firebase.database['ServerValue']['TIMESTAMP']
-  //     });
+    return this.db.list(`${tableNames.ChatMessage}/${channelId}`)
+      .push({
+        from: userId,
+        message: message,
+        timestamp: firebase.database['ServerValue']['TIMESTAMP']
+      });
    }
 
 }

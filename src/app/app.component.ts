@@ -30,7 +30,7 @@ export class MyApp {
     this.initializeApp();
 
     firebase.initializeApp({
-
+      
     });
 
     const unsubscribe = firebase.auth().onAuthStateChanged( user => {

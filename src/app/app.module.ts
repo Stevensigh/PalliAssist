@@ -29,8 +29,15 @@ import {YoutubePipe } from '../pipes/youtube/youtube';
 //firebase
 import { firebaseConfig } from './app.constants';
 
+
 //keyboard
 import { Keyboard } from '@ionic-native/keyboard';
+
+//angularfire 
+//Used for messenger
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 
 
 @NgModule({
@@ -52,6 +59,10 @@ import { Keyboard } from '@ionic-native/keyboard';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,7 +76,7 @@ import { Keyboard } from '@ionic-native/keyboard';
     PainlocatorPage,
     MedicationPage,
     SettingsPage,
-    EsassurveyPage
+    EsassurveyPage,
   ],
   providers: [
     StatusBar,
@@ -73,7 +84,9 @@ import { Keyboard } from '@ionic-native/keyboard';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Keyboard,
     ChatsProvider,
-    AuthProvider
+    AuthProvider,
+    AngularFireDatabase, 
+    AngularFireDatabaseModule,
   ]
 })
 export class AppModule {}

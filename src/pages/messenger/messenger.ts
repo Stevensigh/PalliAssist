@@ -4,6 +4,7 @@ import * as firebase from 'firebase/app';
 import {AuthProvider, UserModel} from '../../providers/auth/auth';
 import {ChatsProvider} from '../../providers/chats/chats';
 import { Keyboard } from '@ionic-native/keyboard';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 /**
  * Generated class for the MessengerPage page.
@@ -30,7 +31,8 @@ export class MessengerPage {
     public platform: Platform,
     public keyboard: Keyboard,
     public chatProvider: ChatsProvider,
-    public authProvider: AuthProvider
+    public authProvider: AuthProvider,
+    public db: AngularFireDatabase
     ) {
       this.user = navParams.get('user');
   }
@@ -45,6 +47,11 @@ export class MessengerPage {
   }
   }
   ngOnInit() {
+    const messaging = firebase.messaging();
+    messaging.requestPermission()
+      .then(function() {
+
+      })
     this.autoScroller = this.autoScroll();
   }
 
@@ -52,18 +59,17 @@ export class MessengerPage {
     this.autoScroller.disconnect();
   }
 
-
   sendMessage(event: any) {
-    // if (!this.chatText)
-    //   return;
+    if (!this.chatText)
+      return;
 
-    // this.chatProvider.sendMessage((this.user as any).$key, this.chatText)
-    //   .then(() => {
-    //       this.chatText = '';
-    //       this.scrollDown();
-    //   }, (error) => {
-    //       console.log(error);
-    //   });
+    this.chatProvider.sendMessage((this.user as any).$key, this.chatText)
+      .then(() => {
+          this.chatText = '';
+          this.scrollDown();
+      }, (error) => {
+          console.log(error);
+      });
     }
 
   private scrollDown() {
