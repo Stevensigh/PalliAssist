@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import firebase from 'firebase';
-
+import {DbProvider} from '../../providers/db/db';
 import { Observable } from 'rxjs/Rx';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -18,16 +18,16 @@ import { tableNames } from '../../app/app.constants';
 export class AuthProvider {
 
   constructor(public http: Http,
-  public db: AngularFireDatabase,
+  public db: DbProvider,
   public afAuth: AngularFireAuth,) {
     console.log('Hello AuthProvider Provider');
   }
 
-  loginUser(email: string, password: string): firebase.Promise<any> {
+  loginUser(email: string, password: string): Promise<any> {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   }
 
-  signupUser(email: string, password: string): firebase.Promise<any> {
+  signupUser(email: string, password: string): Promise<any> {
     return firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
@@ -40,11 +40,11 @@ export class AuthProvider {
     });
   }
 
-  resetPassword(email: string): firebase.Promise<void> {
+  resetPassword(email: string): Promise<void> {
     return firebase.auth().sendPasswordResetEmail(email);
   }
 
-  logoutUser(): firebase.Promise<void> {
+  logoutUser(): Promise<void> {
     return firebase.auth().signOut();
   }
   getAuth(): Observable<firebase.User> {
@@ -54,7 +54,7 @@ export class AuthProvider {
    /**
    * get full profile
    */
-  getFullProfile(uid?: string): Observable<UserModel> {
+  getFullProfile(uid?: string): Observable<any> {
     if (uid)
       return this.db.object(tableNames.User + '/' + uid);
     

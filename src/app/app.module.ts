@@ -23,6 +23,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AuthProvider } from './../providers/auth/auth';
 import { ChatsProvider } from '../providers/chats/chats';
+import { DbProvider } from '../providers/db/db';
 //Youtube
 import {YoutubePipe } from '../pipes/youtube/youtube';
 
@@ -87,6 +88,7 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
     AuthProvider,
     AngularFireDatabase, 
     AngularFireDatabaseModule,
+    DbProvider,
   ]
 })
 export class AppModule {}

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase';
+import {DbProvider,QueryModel} from '../db/db';
 
 import { AuthProvider } from '../auth/auth';
 
@@ -9,7 +10,7 @@ import { tableNames } from '../../app/app.constants';
 @Injectable()
 export class ChatsProvider {
 
-  constructor(public authProvider: AuthProvider, public db: AngularFireDatabase) {
+  constructor(public authProvider: AuthProvider, public db: DbProvider) {
   }
 
   getMessages(channelId: string = 'general') {
@@ -26,24 +27,24 @@ export class ChatsProvider {
   }
 
   getLastMessages(channelId: string = 'general', count: number = 5) {
-    return this.db.list(`${tableNames.ChatMessage}/${channelId}`, {query: {
-      limitToLast: 5,
-      orderByPriority: true
-    }}).map(messages => messages.reverse().map((item) => {
+    let query = new QueryModel();
+    query.limitToLast = 5;
+    query.orderByKey = true;
+    return this.db.list(`${tableNames.ChatMessage}/${channelId}`, query).map(messages => 
+      messages.reverse().map((item) => {
         if (item.from)
           item.user = this.authProvider.getFullProfile(item.from);
 
           return item;
-      }));
+}));
   }
 
   sendMessage(userId: string, message: string, channelId: string = 'general') {
-    return this.db.list(`${tableNames.ChatMessage}/${channelId}`)
-      .push({
-        from: userId,
-        message: message,
-        timestamp: firebase.database['ServerValue']['TIMESTAMP']
-      });
+    return this.db.push(`${tableNames.ChatMessage}/${channelId}`, {
+      from: userId,
+      message: message,
+      timestamp: firebase.database['ServerValue']['TIMESTAMP']
+});
    }
 
 }

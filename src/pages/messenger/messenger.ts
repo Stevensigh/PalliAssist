@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, Platform} from 'ionic-angular';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase';
 import {AuthProvider, UserModel} from '../../providers/auth/auth';
 import {ChatsProvider} from '../../providers/chats/chats';
 import { Keyboard } from '@ionic-native/keyboard';

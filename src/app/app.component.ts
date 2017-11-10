@@ -30,6 +30,13 @@ export class MyApp {
     this.initializeApp();
 
     firebase.initializeApp({
+      apiKey: "AIzaSyBatpKZJklVC12dUKP5jzY60_4-dinSTpI",
+      authDomain: "palliassist-12702.firebaseapp.com",
+      databaseURL: "https://palliassist-12702.firebaseio.com",
+      projectId: "palliassist-12702",
+      storageBucket: "palliassist-12702.appspot.com",
+      messagingSenderId: "444649914055"
+  
       
     });
 
