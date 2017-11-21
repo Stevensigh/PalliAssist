@@ -14,6 +14,7 @@ import { PainlocatorPage } from '../pages/painlocator/painlocator';
 import { MedicationPage } from '../pages/medication/medication';
 import { SettingsPage } from '../pages/settings/settings';
 import { EsassurveyPage } from '../pages/esassurvey/esassurvey';
+import { SignoutPage } from '../pages/signout/signout'; 
 import firebase from 'firebase';
 
 @Component({
@@ -30,12 +31,15 @@ export class MyApp {
     this.initializeApp();
 
     firebase.initializeApp({
-      apiKey: "AIzaSyBatpKZJklVC12dUKP5jzY60_4-dinSTpI",
-      authDomain: "palliassist-12702.firebaseapp.com",
-      databaseURL: "https://palliassist-12702.firebaseio.com",
-      projectId: "palliassist-12702",
-      storageBucket: "palliassist-12702.appspot.com",
-      messagingSenderId: "444649914055"
+
+    
+      // apiKey: "",
+      // authDomain: "",
+      // databaseURL: "",
+      // projectId: "",
+      // storageBucket: "",
+      // messagingSenderId: ""
+  
   
       
     });
@@ -56,7 +60,8 @@ export class MyApp {
       { title: 'Medication', component: MedicationPage},
       { title: 'ESAS Survey', component: EsassurveyPage},
       { title: 'Pain Locator', component: PainlocatorPage},
-      { title: 'Settings ', component: SettingsPage}
+      { title: 'Settings ', component: SettingsPage},
+      { title: 'Sign-out', component: SignoutPage }
 
     ];
 

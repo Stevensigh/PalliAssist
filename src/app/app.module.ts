@@ -16,14 +16,13 @@ import { PainlocatorPage } from '../pages/painlocator/painlocator';
 import { MedicationPage } from '../pages/medication/medication';
 import { SettingsPage } from '../pages/settings/settings';
 import { EsassurveyPage } from '../pages/esassurvey/esassurvey';
+import { SignoutPage } from '../pages/signout/signout';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AuthProvider } from './../providers/auth/auth';
-import { ChatsProvider } from '../providers/chats/chats';
-import { DbProvider } from '../providers/db/db';
 //Youtube
 import {YoutubePipe } from '../pipes/youtube/youtube';
 
@@ -48,6 +47,7 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
     ListPage,
     LoginPage,
     SignupPage,
+    SignoutPage,
     MessengerPage,
     PainlocatorPage,
     MedicationPage,
@@ -78,17 +78,16 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
     MedicationPage,
     SettingsPage,
     EsassurveyPage,
+    SignoutPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Keyboard,
-    ChatsProvider,
     AuthProvider,
     AngularFireDatabase, 
     AngularFireDatabaseModule,
-    DbProvider,
   ]
 })
 export class AppModule {}

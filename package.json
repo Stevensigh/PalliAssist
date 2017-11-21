@@ -26,7 +26,10 @@
     "@ionic-native/status-bar": "3.12.1",
     "@ionic/storage": "2.0.1",
     "angularfire2": "^5.0.0-rc.3",
+    "cordova-plugin-fcm": "^2.1.2",
+    "cordova-plugin-inappbrowser": "^1.7.2",
     "cordova-plugin-keyboard": "^1.1.5",
+    "cordova-plugin-velda-devicefeedback": "0.0.2",
     "firebase": "^4.6.2",
     "ionic-angular": "3.6.0",
     "ionicons": "3.0.0",
@@ -42,7 +45,10 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-keyboard": {}
+      "cordova-plugin-keyboard": {},
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-fcm": {},
+      "cordova-plugin-velda-devicefeedback": {}
     }
   }
 }

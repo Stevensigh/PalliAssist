@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import firebase from 'firebase';
-import {DbProvider} from '../../providers/db/db';
 import { Observable } from 'rxjs/Rx';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -18,7 +17,6 @@ import { tableNames } from '../../app/app.constants';
 export class AuthProvider {
 
   constructor(public http: Http,
-  public db: DbProvider,
   public afAuth: AngularFireAuth,) {
     console.log('Hello AuthProvider Provider');
   }
@@ -51,20 +49,7 @@ export class AuthProvider {
     return this.afAuth.authState;
   }
 
-   /**
-   * get full profile
-   */
-  getFullProfile(uid?: string): Observable<any> {
-    if (uid)
-      return this.db.object(tableNames.User + '/' + uid);
-    
-    return Observable.create((observer) => {
-      this.getAuth().subscribe((user: firebase.User) => {
-        if (user !== null)
-          this.db.object(tableNames.User + '/' + user.uid).subscribe((res) => observer.next(res));
-      });
-    });
-  }
+  
 }
 
 export class UserModel {

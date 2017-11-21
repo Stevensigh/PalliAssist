@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { MessengerPage } from './messenger';
+import { SignoutPage } from './signout';
 
 @NgModule({
   declarations: [
-    MessengerPage,
+    SignoutPage,
   ],
   imports: [
-    IonicPageModule.forChild(MessengerPage),
+    IonicPageModule.forChild(SignoutPage),
   ],
 })
-export class MessengerPageModule {}
+export class SignoutPageModule {}

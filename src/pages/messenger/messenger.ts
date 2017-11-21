@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Platform} from 'ionic-angular';
-import firebase from 'firebase';
-import {AuthProvider, UserModel} from '../../providers/auth/auth';
-import {ChatsProvider} from '../../providers/chats/chats';
-import { Keyboard } from '@ionic-native/keyboard';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the MessengerPage page.
@@ -19,81 +14,12 @@ import { AngularFireDatabase } from 'angularfire2/database';
   templateUrl: 'messenger.html',
 })
 export class MessengerPage {
-  chatText: string;
-  chatMessages: Array<string>;
-  textMaxLength: number = 400;
-  user: UserModel;
-  private autoScroller: MutationObserver;
 
-  constructor(public navCtrl: NavController,
-    public navParams: NavParams,
-    public loadingCtrl: LoadingController,
-    public platform: Platform,
-    public keyboard: Keyboard,
-    public chatProvider: ChatsProvider,
-    public authProvider: AuthProvider,
-    public db: AngularFireDatabase
-    ) {
-      this.user = navParams.get('user');
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {   
-    // this.chatProvider.getMessages()
-    // .subscribe((messages => this.chatMessages = messages));
-
-  if (this.platform.is('cordova')) {
-    this.keyboard.onKeyboardShow()
-      .subscribe(() => this.scrollDown());
-  }
-  }
-  ngOnInit() {
-    const messaging = firebase.messaging();
-    messaging.requestPermission()
-      .then(function() {
-
-      })
-    this.autoScroller = this.autoScroll();
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad MessengerPage');
   }
 
-  ngOnDestroy() {
-    this.autoScroller.disconnect();
-  }
-
-  sendMessage(event: any) {
-    if (!this.chatText)
-      return;
-
-    this.chatProvider.sendMessage((this.user as any).$key, this.chatText)
-      .then(() => {
-          this.chatText = '';
-          this.scrollDown();
-      }, (error) => {
-          console.log(error);
-      });
-    }
-
-  private scrollDown() {
-    this.scroller.scrollTop = this.scroller.scrollHeight;
-  }
-
-  private autoScroll(): MutationObserver {
-    const autoScroller = new MutationObserver(this.scrollDown.bind(this));
-
-    autoScroller.observe(this.messageContent, {
-      childList: true,
-      subtree: true
-    });
-
-    return autoScroller;
-  }
-
-  private get messageContent(): Element {
-    return document.querySelector('.messages');
-  }
-
-  private get scroller(): Element {
-    return this.messageContent.querySelector('.scroll-content');
-  }
-
-      
 }
